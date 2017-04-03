@@ -1,0 +1,6 @@
+public static void main(String args[]) {
+	Date fecha = new Date(26, 03, 2017);
+	System.out.println(fecha.isSameYear(2016));
+	Date fecha2 = new Date(01. 01, 1970);
+	System.out.println(fecha.isSame(fecha2));
+}

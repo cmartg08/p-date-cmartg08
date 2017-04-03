@@ -1,0 +1,302 @@
+
+public class Date {
+
+	private int _day;
+
+	private int _month;
+
+	private int _year;
+
+	
+	 //Constructor vacío
+	public Date() {
+		_day = 1;
+		_month = 1;
+		_year = 0;
+	}
+
+	 // Constructor de la clase
+	public Date(int day, int month, int year) {
+		if(month<1) _month=1; 
+		else if(month>12) _month=12;
+		else _month = month;
+
+		_year = year;
+
+		if(day<1) _day=1; 
+		else switch(_month){
+			case 3: case 6: case 9: case 11: if(day>30) _day=30;
+				else _day=day;
+				break;
+			
+			case 2: if(((_year%400==0) || ((_year%4==0)&&(_year%100!=0))) && (day>29)) _day=29;
+				else if(day>28) _day = 28;
+				else _day = day;
+				break;
+			default: if(day>31) _day=31;
+				else _day=day;
+			}	
+	}
+	
+	
+	public void setDay(int day){
+		if(day<1) _day=1; 
+		else switch(_month){
+			case 3: case 6: case 9: case 11: if(day>30) _day=30;
+				else _day=day;
+				break;
+			
+			case 2: if(((_year%400==0) || ((_year%4==0)&&(_year%100!=0))) && (day>29)) _day=29;
+				else if(day>28) _day = 28;
+				else _day = day;
+				break;
+			default: if(day>31) _day=31;
+				else _day=day;
+			}
+	}
+
+
+	public void setMonth(int month){
+		if(month<1) _month=1; 
+		else if(month>12) _month=12;
+		else _month = month;
+	}
+
+	public void setYear(int year){
+		_year = year;
+	}
+	
+	
+
+	public int getDay(){
+		return _day;
+	}
+	
+	
+
+	public int getMonth(){
+		return _month;
+	}
+
+	public int getYear(){
+		return _year;
+	}
+
+	public boolean isSameYear(int year){
+		if(_year == year) return true;
+		else return false;
+	};
+	
+	public boolean isSameYear1(int year){
+		switch(_year == year){
+			case true:
+					return true;
+					break;
+			default:
+					return false;
+					break;
+		}
+	}
+	
+	public boolean isSameMonth(int month){
+		if(_month == month) return true;
+		else return false;
+	};
+
+	public boolean isSameDay(int day){
+		if(_day == day) return true;
+		else return false;
+	};
+
+	public boolean isSameYear(Date fecha){
+		if(_year == fecha.getYear()) return true;
+		else return false;
+	};
+
+	public boolean isSameMonth(Date fecha){
+		if(_month == fecha.getMonth()) return true;
+		else return false;
+	};
+
+	public boolean isSameDay(Date fecha){
+		if(_day == fecha.getDay()) return true;
+		else return false;
+	};
+
+	public boolean isSame(Date fecha){
+		if((isSameYear(fecha)==true) && (isSameMonth(fecha)==true) && (isSameDay(fecha)==true)) return true;
+		else return false;
+	};
+
+
+
+	public void monthsLeft(){
+		switch(_month){
+			case 1:
+				System.out.println("Para terminar el año quedan Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 2:
+				System.out.println("Para terminar el año quedan Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 3:
+				System.out.println("Para terminar el año quedan Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 4:
+				System.out.println("Para terminar el año quedan Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 5:
+				System.out.println("Para terminar el año quedan Junio, Julio, Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 6:
+				System.out.println("Para terminar el año quedan Julio, Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 7:
+				System.out.println("Para terminar el año quedan Agosto, Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 8:
+				System.out.println("Para terminar el año quedan Septiembre, Octubre, Noviembre y Diciembre.");
+				break;
+			case 9:
+				System.out.println("Para terminar el año quedan Octubre, Noviembre y Diciembre.");
+				break;
+			case 10:
+				System.out.println("Para terminar el año quedan Noviembre y Diciembre.");
+				break;
+			case 11:
+				System.out.println("Para terminar el año queda Diciembre.");
+				break;
+			case 12:
+				System.out.println("Es el último mes del año.");
+				break;
+		}
+	}
+
+
+	public void printDate(){
+		System.out.println("La fecha es: "+_day+"/"+_month+"/"+_year+".");
+	}
+
+
+
+	public void daysLeft(){
+		int m = 0;
+		switch(_month){
+		case 3: case 6: case 9: case 11: m=30;
+				break;
+			
+			case 2: if(((_year%400==0) || ((_year%4==0)&&(_year%100!=0)))) m=29;
+				else m = 28;
+				break;
+			default: m=31;
+				break;
+		}
+		if(_day == m) System.out.println("Es el último día del mes.");
+		else {
+			System.out.println("Para terminar el mes quedan:");
+			for(int i = _day+1; i <= m; i++){
+				System.out.println(i+"/"+getMonth()+"/"+getYear());
+			}
+		}
+	}
+
+
+
+	public void equalMonths(){
+		switch(_month){
+		case 3: case 6: case 9: case 11:
+				System.out.println("Los meses con 30 días son: Abril, Junio, Septiembre y Noviembre.");
+				break;
+			
+			case 2: System.out.println("Solamente Febrero tiene 28 o 29 días.");
+				break;
+			default: System.out.println("Los meses con 30 días son: Enero, Marzo, Mayo, Julio, Agosto, Octubre y Diciembre.");
+				break;
+		}
+		
+	}
+
+	
+	public void daysSinceFirst(){
+		int m = 1, suma = 0;
+		if(_month == m) suma = _day-1;
+		else{
+		while(m<_month) {
+			switch(m){
+				case 3: case 6: case 9: case 11:
+					suma += 30;
+					break;
+			
+				case 2: suma+= 28;
+					break;
+				default: suma += 31;
+					break;
+			}
+			m++;
+		}
+		suma += _day-1;
+		}
+		System.out.println("Han pasado "+suma+" días desde el inicio del año.");
+	}
+
+	public void randomDate1(){
+		int day = (int) Math.random()*31+1;
+		int month = (int) Math.random()*12+1;
+		int year = _year;
+		Date fecha  = new Date(day,month,year);
+		int c = 1;
+		while(isSame(fecha) == false) {
+			day = (int) (Math.random()*31)+1;
+			month = (int) (Math.random()*12)+1;
+			fecha.setMonth(month);
+			fecha.setDay(day);
+		c++;
+		}
+		System.out.println("Han hecho falta "+c+" intentos para acertar la fecha mediante números aleatorios.");
+	}
+
+
+
+
+	public void randomDate2(){
+		int day=0, month=0;
+		int c = 0;
+		Date fecha  = new Date();
+		fecha.setYear(_year);
+		do {
+			day = (int) (Math.random()*31)+1;
+			month = (int) (Math.random()*12)+1;
+			fecha.setMonth(month);
+			fecha.setDay(day);
+		c++;
+		} while(isSame(fecha) == false);
+		System.out.println("Han hecho falta "+c+" intentos para acertar la fecha mediante números aleatorios.");
+	}
+
+
+
+
+	public static void main(String args[]) {
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("---------------------Prueba práctica Date-------------------");
+		int day, month, year;
+		System.out.println("Introduzca un día:");
+		day = Teclado.readInteger();
+		System.out.println("Introduzca un mes:");
+		month = Teclado.readInteger();
+		System.out.println("Introduzca un año:");
+		year = Teclado.readInteger();
+		Date fecha = new Date(day, month, year);
+		fecha.printDate();
+		fecha.daysLeft();
+		fecha.monthsLeft();
+		fecha.equalMonths();
+		fecha.daysSinceFirst();
+		fecha.randomDate1();
+		fecha.randomDate2();
+	}
+
+}
